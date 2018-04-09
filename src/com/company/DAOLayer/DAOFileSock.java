@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -15,10 +16,12 @@ import java.util.List;
 public class DAOFileSock implements IDAOSock {
 
     List<String> data ;
+    List<ISock> sockCollection;
     public  DAOFileSock() throws IOException
     {
         Path path = Paths.get("testDataFile.txt");
         data =  Files.readAllLines(path);
+       sockCollection = new ArrayList<>();
     }
 
     @Override
@@ -45,6 +48,10 @@ public class DAOFileSock implements IDAOSock {
     @Override
     public ISock[] readSock() {
 
+        for (String str:data) {
+            ISock sock = stringToSock(str);
+            sockCollection.add(sock);
+        }
         return new ISock[0];
     }
 
