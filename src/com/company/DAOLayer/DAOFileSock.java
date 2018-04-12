@@ -2,11 +2,15 @@ package com.company.DAOLayer;
 
 import com.company.ModelLayer.ISock;
 import com.company.ModelLayer.SockData;
+import com.sun.deploy.util.ArrayUtil;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -15,27 +19,56 @@ import java.util.List;
 public class DAOFileSock implements IDAOSock {
 
     List<String> data ;
+    List<ISock> sockCollection;
+    Path path ;
     public  DAOFileSock() throws IOException
     {
-        Path path = Paths.get("testDataFile.txt");
+        path = Paths.get("C:\\Users\\1111\\testDataFile.txt");
         data =  Files.readAllLines(path);
+        sockCollection = new ArrayList<>();
+        readSock();
+    }
+
+    int getNewId()
+    {
+        return sockCollection.size()==0 ? 0 :
+                sockCollection.get(sockCollection.size() - 1).getId()+1;
     }
 
     @Override
-    public boolean addSock(ISock sock) {
-        return false;
+    public int addSock(ISock sock) {
+        if (sock.getId()<0)
+        {
+           ISock newSock = new SockData(getNewId(),sock);
+            sockCollection.add(newSock);
+            data.add(newSock.toString());
+        }
+        try {
+            Files.write(path,data);
+        } catch (IOException e) {
+            return -1;
+        }
+        return sock.getId();
+        //to do
+        //change save data algorithm, decrease file write operations,
+        // avoid to use data collection
     }
 
     @Override
-    public boolean addSock(ISock[] sock) {
-        return false;
+    public int [] addSock(ISock[] sock) {
+        int [] result = new int[sock.length];
+        int i =0;
+        for (ISock element:sock) {
+           result[i] =  addSock(element);i++;
+        }
+        return result;
     }
 
 
     ISock stringToSock(String str)
     {
-        String []fields = str.split("|");
-        int id = Integer.parseInt( fields[0]);
+        String []fields = str.split("\\|");
+       int id = Integer.parseInt(fields[0]);
         String type = fields[1];
         String color = fields[2];
         int size = Integer.parseInt( fields[3]);
@@ -43,19 +76,33 @@ public class DAOFileSock implements IDAOSock {
     }
 
     @Override
-    public ISock[] readSock() {
-
-        return new ISock[0];
+    public List<ISock> readSock() {
+        for (String str:data) {
+            ISock sock = stringToSock(str);
+            sockCollection.add(sock);
+        }
+        sockCollection.sort(new Comparator<ISock>() {
+            @Override
+            public int compare(ISock o1, ISock o2) {
+                return o1.compareTo(o2);
+            }
+        });
+        return sockCollection;
     }
 
     @Override
     public ISock readSock(int id) {
-        return null;
+        ISock result = null;
+        for (ISock sock: sockCollection) {
+            if (sock.getId() == id ) result = sock; break;
+        }
+        return result;
     }
 
     @Override
     public boolean updateSock(ISock changedSock) {
-        return false;
+
+        return  false;
     }
 
     @Override
