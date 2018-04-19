@@ -35,6 +35,36 @@ public class ConsoleSock implements IUISock {
             showSock(sock);
         }
     }
+    @Override
+    public ISock updateSock(ISock sock)
+    {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Data to change:");
+        System.out.println("Field 1: " + sock.getType());
+        System.out.println("Field 2: " + sock.getColor());
+        System.out.println("Field 3: " + sock.getSize());
+        System.out.println("Press 0 for exit");
+        boolean continueEdit = true;
+        while (continueEdit) {
+            System.out.println("Please input field number for change:");
+            Integer fieldIndex = Integer.parseInt(sc.nextLine());
+            System.out.println("Please input new value:");
+            String newValue = sc.nextLine();
 
+            if (fieldIndex == 0) {
+                return sock;
+            }
+            if (fieldIndex == 1) {
+                sock.setType(newValue);
+            }
+            if (fieldIndex == 2) {
+                sock.setColor(newValue);
+            }
+            if (fieldIndex == 3) {
+                sock.setSize(Integer.parseInt(newValue));
+            }
+        }
+        return  null;
+    }
 
 }

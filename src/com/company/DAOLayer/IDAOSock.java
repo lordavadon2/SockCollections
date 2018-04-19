@@ -12,7 +12,7 @@ public interface IDAOSock {
     int addSock(ISock sock);
     int[] addSock(ISock[] sock);
 
-    List<ISock> readSock();
+    List<ISock> getSockCollection();
     ISock readSock(int id);
 
     boolean updateSock(ISock changedSock);

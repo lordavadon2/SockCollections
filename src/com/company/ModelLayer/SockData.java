@@ -94,8 +94,8 @@ public class SockData implements ISock,Comparable {
     public int compareTo(Object o) {
         if (o instanceof ISock)
         {
-            if (this.getId() > ((ISock)o).getId()) return  -1;
-            if (this.getId() < ((ISock)o).getId()) return  1;
+            if (this.getId() > ((ISock)o).getId()) return  1;
+            if (this.getId() < ((ISock)o).getId()) return  -1;
         }
         return 0;
     }
