@@ -20,9 +20,12 @@ public class DAOFileSock implements IDAOSock {
 
     List<ISock> sockCollection;
     Path path ;
-    public  DAOFileSock() throws IOException
-    {
-        path = Paths.get("C:\\Temp\\testDataFile.txt");
+    public  DAOFileSock() throws IOException {
+        path = Paths.get("testDataFile.txt");
+        if (!Files.exists(path))
+        {
+          Files.createFile(path);
+        }
         List<String> data =  Files.readAllLines(path);
         sockCollection = new ArrayList<>();
         readSock(data);
