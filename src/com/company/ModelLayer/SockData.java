@@ -1,9 +1,11 @@
 package com.company.ModelLayer;
 
+import javax.activation.UnsupportedDataTypeException;
+
 /**
  * Created by 1111 on 05.04.2018.
  */
-public class SockData implements ISock {
+public class SockData implements ISock,Comparable {
 
     String type;
     String color;
@@ -31,6 +33,14 @@ public class SockData implements ISock {
         this.type = type;
         this.color = color;
         this.size = size;
+        this.id = id;
+    }
+
+    public  SockData(int id, ISock sock)
+        {
+        this.type = sock.getType();
+        this.color = sock.getColor();
+        this.size = sock.getSize();
         this.id = id;
     }
 
@@ -78,5 +88,15 @@ public class SockData implements ISock {
         sb.append("|" + this.color);
         sb.append("|" + this.size);
         return  sb.toString();
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        if (o instanceof ISock)
+        {
+            if (this.getId() > ((ISock)o).getId()) return  1;
+            if (this.getId() < ((ISock)o).getId()) return  -1;
+        }
+        return 0;
     }
 }

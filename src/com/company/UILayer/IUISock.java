@@ -10,5 +10,6 @@ public interface IUISock {
     ISock getSockFromUser();
     void showSock(ISock sock);
     void showSock(ISock [] socks);
+    public ISock updateSock(ISock sock);
 
 }
