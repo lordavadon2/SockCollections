@@ -17,10 +17,10 @@ try {
     IDAOSock daoObject = new DAOFileSock();
     ISockModel model = new SockModel(daoObject);
     IUISock socInput = new ConsoleSock(model);
-    socInput.mainMenu();
+    while (socInput.mainMenu());
 }catch (Exception ex)
 {
-    return;
+    ex.getMessage();
 }
 
     }

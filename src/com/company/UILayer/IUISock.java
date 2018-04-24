@@ -14,5 +14,5 @@ public interface IUISock {
     void showSock(List<ISock> socks);
     ISock updateSock(ISock sock);
     void deleteSock();
-    void mainMenu();
+    boolean mainMenu();
 }

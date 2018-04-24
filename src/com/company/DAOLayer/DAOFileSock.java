@@ -2,9 +2,6 @@ package com.company.DAOLayer;
 
 import com.company.ModelLayer.ISock;
 import com.company.ModelLayer.SockData;
-import com.sun.deploy.util.ArrayUtil;
-
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;

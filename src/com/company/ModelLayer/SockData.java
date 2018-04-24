@@ -1,6 +1,8 @@
 package com.company.ModelLayer;
 
 import javax.activation.UnsupportedDataTypeException;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by 1111 on 05.04.2018.
@@ -11,6 +13,7 @@ public class SockData implements ISock,Comparable {
     String color;
     int size;
     int id;
+    Map<String, String> sockMap;
 
     public  SockData()
     {
@@ -18,6 +21,7 @@ public class SockData implements ISock,Comparable {
         this.color = "";
         this.size = 0;
         this.id = -1;
+        sockMap = new HashMap<>();
     }
 
     public  SockData(String type, String color, int size)
@@ -26,6 +30,7 @@ public class SockData implements ISock,Comparable {
         this.color = color;
         this.size = size;
         this.id = -1;
+        sockMap = new HashMap<>();
     }
 
     public  SockData(String type, String color, int size, int id)
@@ -43,6 +48,8 @@ public class SockData implements ISock,Comparable {
         this.size = sock.getSize();
         this.id = id;
     }
+
+
 
     @Override
     public void setType(String type) {
@@ -99,4 +106,44 @@ public class SockData implements ISock,Comparable {
         }
         return 0;
     }
+
 }
+
+
+
+
+
+
+//    public boolean createSockMap(ISock sock){
+//        sockMap.put("type", sock.getType());
+//        sockMap.put("color", sock.getColor());
+//        sockMap.put("size", String.valueOf(sock.getSize()));
+//        return true;
+//    }
+//
+//    public String showSockMap(){
+//        StringBuilder sb = new StringBuilder("");
+//        sb.append("Type: " + sockMap.get("type") + "\n");
+//        sb.append("Color: " + sockMap.get("color") + "\n");
+//        sb.append("Size: " + sockMap.get("size") + "\n");
+//        return sb.toString();
+//    }
+//
+//    public boolean updateSockMap(String key, String value){
+//        if (value =="" || value == null){
+//            return false;
+//        }
+//        sockMap.put(key, value);
+//        return true;
+//    }
+//
+//    public ISock getSockMap(ISock sock){
+//        if (null == sock){
+//            return sock;
+//        }
+//        sock.setType(sockMap.get("type"));
+//        sock.setColor(sockMap.get("color"));
+//        sock.setSize(Integer.parseInt(sockMap.get("type")));
+//        System.out.println("Saved...");
+//        return sock;
+//    }
