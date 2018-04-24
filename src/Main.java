@@ -13,15 +13,14 @@ import java.io.IOException;
 public class Main {
 
     public static void main(String[] args) {
-try {
-    IDAOSock daoObject = new DAOFileSock();
-    ISockModel model = new SockModel(daoObject);
-    IUISock socInput = new ConsoleSock(model);
-    while (socInput.mainMenu());
-}catch (Exception ex)
-{
+    try {
+        IDAOSock daoObject = new DAOFileSock();
+        ISockModel model = new SockModel(daoObject);
+        IUISock socInput = new ConsoleSock(model);
+        while (socInput.mainMenu());
+        }
+    catch (Exception ex) {
     ex.getMessage();
-}
-
+        }
     }
 }
