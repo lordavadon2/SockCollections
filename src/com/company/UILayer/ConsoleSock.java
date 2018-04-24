@@ -20,6 +20,7 @@ public class ConsoleSock implements IUISock {
     private String entVal = "Enter value: ";
     private String wrongVal = "Failed: wrong value";
     private String params = "The parametres was changed";
+    private String wrng = "Invalid user input";
 
 
     public ConsoleSock(ISockModel sockModel) {
@@ -95,7 +96,7 @@ public class ConsoleSock implements IUISock {
                 case 5:
                     return sock;
                 default:
-                    System.out.println("Wrong command!");
+                    System.out.println(wrng);
             }
         }
     }
@@ -143,6 +144,8 @@ public class ConsoleSock implements IUISock {
                    return true;
                case  4:
                   return false;
+                  default:
+                      System.out.println(wrng);
            }
        }
     }

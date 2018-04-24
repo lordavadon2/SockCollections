@@ -1,2 +1,2 @@
-0|Warm|Red|37
+0|Warm|Brown|37
 1|Hot|Blue|41
