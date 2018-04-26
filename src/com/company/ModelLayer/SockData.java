@@ -13,7 +13,6 @@ public class SockData implements ISock,Comparable {
     String color;
     int size;
     int id;
-    Map<String, String> sockMap;
 
     public  SockData()
     {
@@ -21,7 +20,6 @@ public class SockData implements ISock,Comparable {
         this.color = "";
         this.size = 0;
         this.id = -1;
-        sockMap = new HashMap<>();
     }
 
     public  SockData(String type, String color, int size)
@@ -30,7 +28,6 @@ public class SockData implements ISock,Comparable {
         this.color = color;
         this.size = size;
         this.id = -1;
-        sockMap = new HashMap<>();
     }
 
     public  SockData(String type, String color, int size, int id)
