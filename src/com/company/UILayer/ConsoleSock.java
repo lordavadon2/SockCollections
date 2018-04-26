@@ -1,13 +1,9 @@
 package com.company.UILayer;
 
-import com.company.DAOLayer.DAOFileSock;
-import com.company.DAOLayer.IDAOSock;
 import com.company.ModelLayer.*;
-
-import java.io.Console;
-import java.io.IOException;
 import java.util.Scanner;
 import java.util.List;
+import static com.company.UILayer.ConsoleStrings.*;
 
 /**
  * Created by 1111 on 05.04.2018.
@@ -16,11 +12,7 @@ public class ConsoleSock implements IUISock {
 
     ISockModel sockModel;
     Scanner scn;
-    SockMap sockMap;
-    private String entVal = "Enter value: ";
-    private String wrongVal = "Failed: wrong value";
-    private String params = "The parametres was changed";
-    private String wrng = "Invalid user input";
+    ISockMap sockMap;
 
 
     public ConsoleSock(ISockModel sockModel) {
@@ -29,16 +21,6 @@ public class ConsoleSock implements IUISock {
         sockMap = new SockMap();
     }
 
-    private static String getMainMenuText() {
-        return "Show all: 0\nAdd new item: 1\nUpdate item: 2\n"
-                + "Delete item: 3\nExit : 4\nPlease choice option: ";
-    }
-
-    private static String getUpdateMenuText() {
-        return "Show sock parametres: 0\nChange type: 1\n" +
-                "Change color: 2\nChange size: 3\nSave & exit: 4\n" +
-                "Exit without saving: 5\n";
-    }
 
     @Override
     public ISock getSockFromUser() {
@@ -50,7 +32,6 @@ public class ConsoleSock implements IUISock {
         result.setSize(Integer.parseInt(scn.nextLine()));
         System.out.print("Color: ");
         result.setColor(scn.nextLine());
-
         return result;
     }
 
@@ -66,9 +47,9 @@ public class ConsoleSock implements IUISock {
         }
     }
     private void changeParams(String value){
-        System.out.println(entVal);
+        System.out.println(ENTVAL);
         System.out.println(sockMap.updateSockMap(value, scn.nextLine()) ?
-                params : wrongVal);
+                PARAMS : WRONGVAL);
     }
 
     @Override
@@ -76,7 +57,7 @@ public class ConsoleSock implements IUISock {
         System.out.println("Sock update menu");
         sockMap.createSockMap(sock);
         while (true) {
-            System.out.println(getUpdateMenuText());
+            System.out.println(GETUPDATEMENUTEXT);
             Integer fieldIndex = Integer.parseInt(scn.nextLine());
             switch (fieldIndex) {
                 case 0:
@@ -96,7 +77,7 @@ public class ConsoleSock implements IUISock {
                 case 5:
                     return sock;
                 default:
-                    System.out.println(wrng);
+                    System.out.println(WARNING);
             }
         }
     }
@@ -127,7 +108,7 @@ public class ConsoleSock implements IUISock {
     @Override
     public boolean mainMenu() {
        while(true) {
-           System.out.println(getMainMenuText());
+           System.out.println(GETMAINMENUTEXT);
            Integer res = Integer.parseInt(scn.nextLine());
            switch (res) {
                case 0:
@@ -145,7 +126,7 @@ public class ConsoleSock implements IUISock {
                case  4:
                   return false;
                   default:
-                      System.out.println(wrng);
+                      System.out.println(WARNING);
            }
        }
     }
